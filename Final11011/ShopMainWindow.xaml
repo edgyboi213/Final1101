@@ -5,12 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Final11011"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
-    <Grid>
+        Title="ShopMainWindow" Height="450" Width="800" Loaded="Window_Loaded" ResizeMode="NoResize">
+
+    <Grid x:Name="ShopGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="ProductsDataGrid"/>
+
+        <Border BorderBrush="#FFFFCC99" BorderThickness="5" Grid.Column="1"/>
+
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Ароматный мир" FontSize="30" FontWeight="Bold" FontFamily="Courier New" HorizontalAlignment="Center" Margin="0,20,0,0" Foreground="#FFCC6600"/>
+            <TextBlock x:Name="WelcomeTextBlock" Text="Добро пожаловать, " Visibility="Hidden" FontSize="20" FontFamily="Courier New" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="UserNameTextBlock" FontSize="20" FontFamily="Courier New" HorizontalAlignment="Center"/>
+            <Button x:Name="LoginButton" Width="90" Height="30" Content="Войти" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" Click="LoginButton_Click"/>
+            <Button x:Name="LogoutButton" Width="90" Height="30" Content="Выйти" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="Hidden" Click="LogoutButton_Click"/>
+            <Image Height="174" Source="/Resources/logo.png" Stretch="Fill" Width="176" Margin="30"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Column="1" DockPanel.Dock="Right">
+            <StackPanel x:Name="ProductsStackPanel"/>
+        </ScrollViewer>
     </Grid>
 </Window>

@@ -16,14 +16,6 @@ namespace DAL.Services
         public async Task GetOrderByIdAsync(int id)
         {
             var order = await _context.Orders.FindAsync(id);
-            if (order != null)
-            {
-                Console.WriteLine($"{order.OrderId} {order.User} {order.DeliveryDate} {order.PickupPoint} {order.Code}");
-            }
-            else
-            {
-                Console.WriteLine("Заказ не найден!");
-            }
         }
 
         public async Task AddOrderAsync(Order order)

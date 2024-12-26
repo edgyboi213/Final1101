@@ -1,11 +1,34 @@
+using DAL.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using ShopWebApi.Services;
+using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+        options.TokenValidationParameters = new()
+        {
+            ValidateIssuer = false,
+            // ValidIssuer = "",
+            ValidateAudience = false,
+            // ValidAudience = "",
+            ValidateLifetime = true, // время жизни токена
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
+        }
+    );
+builder.Services.AddScoped<TokenService, TokenService>();
+
+//database context
+builder.Services.AddDbContext<ShopContext>();
 
 var app = builder.Build();
 

@@ -15,15 +15,7 @@ namespace DAL.Services
 
         public async Task GetUserByIdAsync(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user != null)
-            {
-                Console.WriteLine($"{user.UserId} {user.Name} {user.Surname} {user.Role}");
-            }
-            else
-            {
-                Console.WriteLine("Пользователь не найден!");
-            }
+            await _context.Users.FindAsync(id);
         }
 
         public async Task AddUserAsync(User user)

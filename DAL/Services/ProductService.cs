@@ -16,14 +16,6 @@ namespace DAL.Services
         public async Task GetProductByIdAsync(int id)
         {
             var product = await _context.Products.FindAsync(id);
-            if (product != null)
-            {
-                Console.WriteLine($"{product.ProductArticleNumber} {product.Name} {product.Manufacturer} {product.Cost} {product.QuantityInStock}");
-            }
-            else
-            {
-                Console.WriteLine("Продукт не найден!");
-            }
         }
 
         public async Task AddProductAsync(Product product)
