@@ -22,7 +22,7 @@ namespace Final11011
             var products = await _productService.GetAllProductsAsync();
             ShopGrid.DataContext = products;
 
-            // Юлия Сергеевна, если вы это видите - простите, умоляю..
+
             foreach (var product in products)
             {
                 // объявление элементов
